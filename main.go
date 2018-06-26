@@ -1,36 +1,28 @@
 package main
 
 import (
-	"crypto/tls"
-	"net"
-	"time"
+	"database/sql"
+	"fmt"
+	"os"
 
-	"github.com/amsokol/ignite-go-client/binary/v1"
+	_ "github.com/alexbrainman/odbc"
 	u "github.com/nombiezinja/chstub/utils"
 )
 
 func main() {
+	Setenv()
 
-	// ctx := context.Background()
+	var DB *sql.DB
+	var err error
 
-	// connect
-	c, err := ignite.Connect(ignite.ConnInfo{
-		Network: "tcp",
-		Host:    "localhost",
-		Port:    10800,
-		Major:   1,
-		Minor:   1,
-		Patch:   0,
-		// Username: "ignite",
-		// Password: "ignite",
-		Dialer: net.Dialer{
-			Timeout: 10 * time.Second,
-		},
-		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
-		},
-	})
-	u.FailOnError(err, "Failed to connect to server")
+	dbstring := fmt.Sprintf("Driver=Apache Ignite;ADDRESS=%s;Cache=%s",
+		os.Getenv("address"), os.Getenv("cache"))
 
-	defer c.Close()
+	DB, err = sql.Open("odbc", dbstring)
+	u.FailOnError(err, "Failed to open ODBC connection")
+
+	err = DB.Ping()
+	u.FailOnError(err, "Failed to ping ODBC")
+
+	fmt.Println("Apache Ignite connection successfully established")
 }
