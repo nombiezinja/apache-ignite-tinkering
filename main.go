@@ -26,16 +26,15 @@ func main() {
 
 	fmt.Println("Apache Ignite connection successfully established")
 
-	// created, err := db.Exec("CREATE TABLE TESTTEST(ID INT PRIMARY KEY, NAME VARCHAR(255));")
-	// u.FailOnError(err, "Failed to create table")
+	created, err := db.Exec("CREATE TABLE BUYS (ID UUID PRIMARY KEY, USER_ID uuid, BASE_AMOUNT NUMERIC, UNFILLED_AMOUNT NUMERIC, PRICE NUMERIC, CREATED_AT INT );")
+	u.FailOnError(err, "Failed to create table")
 
-	// fmt.Println(created)
+	fmt.Println(created)
 
-	// inserted, err := db.Exec("INSERT INTO TESTTEST VALUES(17, 'BLEH')")
-	// u.FailOnError(err, "Failed to insert")
+	inserted, err := db.Exec("INSERT INTO BUYS VALUES('a5595890-7f1e-403c-869b-70509a976e23', 'a5595890-7f1e-403c-869b-70509a976e23', 2.12, 2.12, 3.11, 1530124408)")
+	u.FailOnError(err, "Failed to insert")
 
-	// fmt.Println(inserted)
+	fmt.Println(inserted)
 
-	// db.Exec("INSERT INTO Organization.Organization (name) VALUES ('Hp');")
-	db.Exec("INSERT INTO Buys.BUY VALUES (1, 29, 29, 236, '2d931510-d99f-494a-8c67-87feb05e1594', 15003929329);")
+	// db.Exec("INSERT INTO BUYS.BUY VALUES (1, 29, 29, 236, '2d931510-d99f-494a-8c67-87feb05e1594', 15003929329);")
 }
