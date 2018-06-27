@@ -26,16 +26,16 @@ func main() {
 
 	fmt.Println("Apache Ignite connection successfully established")
 
-	created, err := db.Exec("CREATE TABLE TESTTEST(ID INT PRIMARY KEY, NAME VARCHAR(255));")
-	u.FailOnError(err, "Failed to create table")
+	// created, err := db.Exec("CREATE TABLE TESTTEST(ID INT PRIMARY KEY, NAME VARCHAR(255));")
+	// u.FailOnError(err, "Failed to create table")
 
-	fmt.Println(created)
+	// fmt.Println(created)
 
-	inserted, err := db.Exec("INSERT INTO TESTTEST VALUES(17, 'BLEH')")
-	u.FailOnError(err, "Failed to insert")
+	// inserted, err := db.Exec("INSERT INTO TESTTEST VALUES(17, 'BLEH')")
+	// u.FailOnError(err, "Failed to insert")
 
-	fmt.Println(inserted)
+	// fmt.Println(inserted)
 
 	// db.Exec("INSERT INTO Organization.Organization (name) VALUES ('Hp');")
-	// db.Exec("INSERT INTO Buys.BUY (ID, BaseAmount, UnfilledAmount, Price, UserID, CreatedAt) VALUES (1, 29, 29, 236, '2d931510-d99f-494a-8c67-87feb05e1594', 15003929329);")
+	db.Exec("INSERT INTO Buys.BUY VALUES (1, 29, 29, 236, '2d931510-d99f-494a-8c67-87feb05e1594', 15003929329);")
 }
