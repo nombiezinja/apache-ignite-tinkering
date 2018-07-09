@@ -26,7 +26,7 @@ func main() {
 
 	fmt.Println("Apache Ignite connection successfully established")
 
-	created, err := db.Exec("CREATE TABLE BUYS (ID UUID PRIMARY KEY, USER_ID uuid, BASE_AMOUNT NUMERIC, UNFILLED_AMOUNT NUMERIC, PRICE NUMERIC, CREATED_AT INT );")
+	created, err := db.Exec("CREATE TABLE FOOS (ID UUID PRIMARY KEY, CREATED_AT INT );")
 	u.FailOnError(err, "Failed to create table")
 
 	fmt.Println(created)
